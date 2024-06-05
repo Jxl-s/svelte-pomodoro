@@ -1,7 +1,5 @@
 <script>
 	export let data;
-
-	const { title } = data;
 </script>
 
-<h1>{title}</h1>
+<main>Welcome to useless pomodoro website</main>
