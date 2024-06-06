@@ -1,1 +1,1 @@
-export * from './createTimerStore';
+export * from './timer';
