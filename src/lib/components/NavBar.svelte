@@ -1,13 +1,14 @@
 <script>
 	import NavLink from './NavLink.svelte';
+	import NavUser from './NavUser.svelte';
 	import Button from './ui/button/button.svelte';
-	import { signIn, signOut } from '@auth/sveltekit/client';
+
+	import { signIn } from '@auth/sveltekit/client';
 
 	/** @type {import('@auth/sveltekit').Session | null} */
 	export let session;
 
 	const handleSignIn = () => signIn('google');
-	const handleSignOut = () => signOut();
 </script>
 
 <div class="border-b">
@@ -19,7 +20,7 @@
 		</div>
 		<div class="ml-auto flex items-center space-x-4 text-sm">
 			{#if session}
-				<img src={session.user?.image} alt="User avatar" class="w-8 h-8 rounded-full" />
+				<NavUser {session} />
 			{:else}
 				<Button on:click={handleSignIn}>Sign In</Button>
 			{/if}
