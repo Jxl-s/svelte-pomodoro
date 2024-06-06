@@ -1,6 +1,4 @@
 <script>
-	import { TimerStatus, formatTime, timerStore } from '$lib/stores/timer';
-	import Button from '../ui/button/button.svelte';
 	import * as Card from '../ui/card';
 	import SessionSelect from './SessionSelect.svelte';
 	import TimeControls from './TimeControls.svelte';
@@ -9,9 +7,6 @@
 	/** @type {string | undefined} */
 	let className = undefined;
 	export { className as class };
-
-	const timeLeft = timerStore.timeLeft;
-	const timerStatus = timerStore.timerStatus;
 </script>
 
 <Card.Root class={className}>

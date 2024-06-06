@@ -16,7 +16,6 @@
 		<a href="/" class="font-bold text-2xl">Dark Pomodoro</a>
 		<div class="flex items-center space-x-4 lg:space-x-6 mx-6">
 			<NavLink href="/" active={true}>Pomodoro</NavLink>
-			<NavLink href="/" active={false}>Statistics</NavLink>
 		</div>
 		<div class="ml-auto flex items-center space-x-4 text-sm">
 			{#if session}

@@ -1,6 +1,6 @@
 <script>
 	import FaForward from '$lib/icons/FaForward.svelte';
-	import { TimerStatus, timerStore } from '$lib/stores/timer';
+	import { TimerStatus, decrementTime, timerStore } from '$lib/stores/timer';
 	import Button from '../ui/button/button.svelte';
 
 	const timerStatus = timerStore.timerStatus;
@@ -13,13 +13,18 @@
 	const handlePauseTimer = () => {
 		timerStore.timerStatus.set(TimerStatus.Paused);
 	};
+
+	const handleForward = () => {
+		timerStore.timeLeft.set(0);
+		decrementTime();
+	};
 </script>
 
 <section class="grid">
 	{#if $timerStatus === TimerStatus.Running}
 		<div class="flex gap-2">
 			<Button variant="secondary" on:click={handlePauseTimer} class="w-full">Pause</Button>
-			<Button variant="ghost">
+			<Button variant="ghost" on:click={handleForward}>
 				<FaForward />
 			</Button>
 		</div>
