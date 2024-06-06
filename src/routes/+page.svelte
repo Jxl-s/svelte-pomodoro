@@ -4,8 +4,8 @@
 </script>
 
 <main>
-	<div class="flex gap-3">
+	<div class="grid gap-3">
 		<Timer class="w-full max-w-lg" />
-		<TaskList class="w-full" />
+		<TaskList class="w-full max-w-lg" />
 	</div>
 </main>

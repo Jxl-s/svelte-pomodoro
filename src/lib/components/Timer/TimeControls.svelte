@@ -1,22 +1,30 @@
 <script>
 	import FaForward from '$lib/icons/FaForward.svelte';
-	import { TimerStatus, pauseTimer, startTimer, timerStore } from '$lib/stores/timer';
+	import { TimerStatus, timerStore } from '$lib/stores/timer';
 	import Button from '../ui/button/button.svelte';
 
 	const timerStatus = timerStore.timerStatus;
 	const pomodoroNumber = timerStore.pomodoroNumber;
+
+	const handleStartTimer = () => {
+		timerStore.timerStatus.set(TimerStatus.Running);
+	};
+
+	const handlePauseTimer = () => {
+		timerStore.timerStatus.set(TimerStatus.Paused);
+	};
 </script>
 
 <section class="grid">
 	{#if $timerStatus === TimerStatus.Running}
 		<div class="flex gap-2">
-			<Button variant="secondary" on:click={() => pauseTimer()} class="w-full">Pause</Button>
+			<Button variant="secondary" on:click={handlePauseTimer} class="w-full">Pause</Button>
 			<Button variant="ghost">
 				<FaForward />
 			</Button>
 		</div>
 	{:else}
-		<Button on:click={() => startTimer()}>
+		<Button on:click={handleStartTimer}>
 			{$timerStatus === TimerStatus.Paused ? 'Resume' : 'Start'}
 		</Button>
 	{/if}

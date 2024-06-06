@@ -1,12 +1,9 @@
 import { get, writable } from 'svelte/store';
 
 // Defaults
-// const DEFAULT_FOCUS_TIME = 25 * 60;
-// const DEFAULT_SHORT_BREAK_TIME = 5 * 60;
-// const DEFAULT_LONG_BREAK_TIME = 15 * 60;
-const DEFAULT_FOCUS_TIME = 1;
-const DEFAULT_SHORT_BREAK_TIME = 1;
-const DEFAULT_LONG_BREAK_TIME = 1;
+const DEFAULT_FOCUS_TIME = 25 * 60;
+const DEFAULT_SHORT_BREAK_TIME = 5 * 60;
+const DEFAULT_LONG_BREAK_TIME = 15 * 60;
 const DEFAULT_LONG_BREAK_INTERVAL = 4;
 
 const DEFAULT_SOUND_ENABLED = true;
@@ -94,14 +91,6 @@ export function setSessionType(type) {
 	}
 
 	timerStore.timerStatus.set(TimerStatus.Stopped);
-}
-
-export function startTimer() {
-	timerStore.timerStatus.set(TimerStatus.Running);
-}
-
-export function pauseTimer() {
-	timerStore.timerStatus.set(TimerStatus.Paused);
 }
 
 export function incrementPomodoro() {
