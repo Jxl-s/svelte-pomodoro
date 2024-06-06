@@ -1,1 +1,1 @@
-<main>Welcome to useless pomodoro website</main>
+<main>Welcome to the minimalistic pomodoro timer</main>
