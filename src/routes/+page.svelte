@@ -1,6 +1,6 @@
 <script>
 	import TaskList from '$lib/components/TaskList.svelte';
-	import Timer from '$lib/components/Timer.svelte';
+	import Timer from '$lib/components/Timer/index.svelte';
 </script>
 
 <main>
