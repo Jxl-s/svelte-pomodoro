@@ -1,11 +1,8 @@
 <script>
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
-	import { SessionTypes, timerStore } from '$lib/stores/timer';
+	import { resetPomodoro, timerStore } from '$lib/stores/timer';
 
 	const pomodoroNumber = timerStore.pomodoroNumber;
-	const handleResetPomodoro = () => {
-		timerStore.pomodoroNumber.set(1);
-	};
 </script>
 
 <AlertDialog.Root>
@@ -23,7 +20,7 @@
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
 			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-			<AlertDialog.Action on:click={handleResetPomodoro}>Continue</AlertDialog.Action>
+			<AlertDialog.Action on:click={resetPomodoro}>Continue</AlertDialog.Action>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
 </AlertDialog.Root>

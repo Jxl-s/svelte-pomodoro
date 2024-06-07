@@ -21,7 +21,7 @@
 			{#if session}
 				<NavUser {session} />
 			{:else}
-				<Button on:click={handleSignIn} disabled>Sign In</Button>
+				<Button on:click={handleSignIn}>Sign In</Button>
 			{/if}
 		</div>
 	</div>

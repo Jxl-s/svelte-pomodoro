@@ -10,6 +10,6 @@
 		<Timer class="w-full" />
 		<Settings class="w-full" />
 		<TaskList class="w-full" />
-		<SessionShare class="w-full" />
+		<!-- <SessionShare class="w-full" /> -->
 	</div>
 </main>

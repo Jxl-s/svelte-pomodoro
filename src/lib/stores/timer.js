@@ -1,4 +1,4 @@
-import { playAlarm } from '$lib/audio';
+import { playAlarm, stopAlarm } from '$lib/audio';
 import { get, writable } from 'svelte/store';
 
 // Defaults
@@ -132,4 +132,22 @@ export function decrementTime() {
 
 		return 0;
 	});
+}
+
+export function resetPomodoro() {
+	timerStore.pomodoroNumber.set(1);
+}
+
+export function startTimer() {
+	stopAlarm();
+	timerStore.timerStatus.set(TimerStatus.Running);
+}
+
+export function pauseTimer() {
+	timerStore.timerStatus.set(TimerStatus.Paused);
+}
+
+export function forwardTimer() {
+	timerStore.timeLeft.set(0);
+	decrementTime();
 }
