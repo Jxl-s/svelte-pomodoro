@@ -25,7 +25,7 @@
 						Enable the playing of sounds when the timer stops.
 					</p>
 				</div>
-				<Switch bind:value={$soundEnabled} />
+				<Switch bind:checked={$soundEnabled} />
 			</div>
 			<div class="w-full flex gap-4 items-center justify-between">
 				<div>

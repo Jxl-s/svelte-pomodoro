@@ -1,3 +1,4 @@
+import { playAlarm } from '$lib/audio';
 import { get, writable } from 'svelte/store';
 
 // Defaults
@@ -112,6 +113,11 @@ export function decrementTime() {
 			case SessionTypes.LongBreak:
 				nextSession = SessionTypes.Focus;
 				break;
+		}
+
+		// Playing alarm
+		if (get(settingsStore.soundEnabled)) {
+			playAlarm();
 		}
 
 		setSessionType(nextSession);

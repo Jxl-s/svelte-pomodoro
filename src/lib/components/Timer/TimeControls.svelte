@@ -1,12 +1,13 @@
 <script>
+	import { stopAlarm } from '$lib/audio';
 	import FaForward from '$lib/icons/FaForward.svelte';
 	import { TimerStatus, decrementTime, timerStore } from '$lib/stores/timer';
 	import Button from '../ui/button/button.svelte';
 	import ResetSessionModal from './ResetSessionModal.svelte';
 
 	const timerStatus = timerStore.timerStatus;
-
 	const handleStartTimer = () => {
+		stopAlarm();
 		timerStore.timerStatus.set(TimerStatus.Running);
 	};
 
