@@ -3,13 +3,39 @@
 	import { onMount } from 'svelte';
 
 	const timeLeft = timerStore.timeLeft;
+
 	onMount(() => {
-		const interval = setInterval(decrementTime, 1000);
-		return () => clearInterval(interval);
+		/** @type {number} */
+		let intervalId;
+		let start = performance.now();
+
+		const length = 1000; // length of time between intervals in milliseconds
+
+		/**
+		 * Step function for requestAnimationFrame
+		 * @param timestamp {number}
+		 */
+		function step(timestamp) {
+			if (timestamp - start >= length) {
+				decrementTime();
+				start = timestamp;
+			}
+
+			intervalId = requestAnimationFrame(step);
+		}
+
+		intervalId = requestAnimationFrame(step);
+		return () => cancelAnimationFrame(intervalId);
 	});
 
+	/**
+	 * Shorthand for padding number
+	 * @param n {number}
+	 */
+	const padNum = (n) => n.toString().padStart(2, '0');
+
 	$: [timeMin, timeSec] = formatTime($timeLeft);
-	$: timeString = timeMin.toString().padStart(2, '0') + ':' + timeSec.toString().padStart(2, '0');
+	$: timeString = padNum(timeMin) + ':' + padNum(timeSec);
 </script>
 
 <section class="my-4 text-center">
