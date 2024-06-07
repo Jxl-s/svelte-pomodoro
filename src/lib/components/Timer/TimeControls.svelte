@@ -2,9 +2,9 @@
 	import FaForward from '$lib/icons/FaForward.svelte';
 	import { TimerStatus, decrementTime, timerStore } from '$lib/stores/timer';
 	import Button from '../ui/button/button.svelte';
+	import ResetSessionModal from './ResetSessionModal.svelte';
 
 	const timerStatus = timerStore.timerStatus;
-	const pomodoroNumber = timerStore.pomodoroNumber;
 
 	const handleStartTimer = () => {
 		timerStore.timerStatus.set(TimerStatus.Running);
@@ -33,8 +33,5 @@
 			{$timerStatus === TimerStatus.Paused ? 'Resume' : 'Start'}
 		</Button>
 	{/if}
-	<p class="text-muted-foreground text-sm mt-2">
-		Pomodoro Session
-		<span class="font-bold text-foreground">#{$pomodoroNumber}</span>
-	</p>
+	<ResetSessionModal />
 </section>
