@@ -1,4 +1,5 @@
 <script>
+	import { browser } from '$app/environment';
 	import { settingsStore } from '$lib/stores/timer';
 	import * as Card from '../ui/card';
 	import Switch from '../ui/switch/switch.svelte';
@@ -8,6 +9,17 @@
 	export { className as class };
 
 	const { notificationEnabled, soundEnabled } = settingsStore;
+
+	$: {
+		if ($notificationEnabled && browser) {
+			Notification.requestPermission().then((result) => {
+				if (result !== 'granted') {
+					notificationEnabled.set(false);
+					alert('You need to allow notifications to receive alerts');
+				}
+			});
+		}
+	}
 </script>
 
 <Card.Root class={className}>
@@ -34,7 +46,7 @@
 						A notification will be sent when the timer stops.
 					</p>
 				</div>
-				<Switch bind:value={$notificationEnabled} />
+				<Switch bind:checked={$notificationEnabled} />
 			</div>
 		</div>
 	</Card.Content>

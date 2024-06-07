@@ -7,14 +7,14 @@ const DEFAULT_SHORT_BREAK_TIME = 5 * 60;
 const DEFAULT_LONG_BREAK_TIME = 15 * 60;
 const DEFAULT_LONG_BREAK_INTERVAL = 4;
 
-const DEFAULT_SOUND_ENABLED = true;
-const DEFAULT_NOTIFICATION_ENABLED = true;
+const DEFAULT_SOUND_ENABLED = false;
+const DEFAULT_NOTIFICATION_ENABLED = false;
 
 // Enums
 export const SessionTypes = {
 	Focus: 'Focus',
-	ShortBreak: 'ShortBreak',
-	LongBreak: 'LongBreak'
+	ShortBreak: 'Short Break',
+	LongBreak: 'Long Break'
 };
 
 export const TimerStatus = {
@@ -118,6 +118,13 @@ export function decrementTime() {
 		// Playing alarm
 		if (get(settingsStore.soundEnabled)) {
 			playAlarm();
+		}
+
+		if (get(settingsStore.notificationEnabled)) {
+			console.log('Sending notification');
+			new Notification('Time is up!', {
+				body: `Time for ${nextSession}`
+			});
 		}
 
 		setSessionType(nextSession);
