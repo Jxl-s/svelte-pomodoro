@@ -1,5 +1,4 @@
 <script>
-	import { stopAlarm } from '$lib/audio';
 	import FaForward from '$lib/icons/FaForward.svelte';
 	import { TimerStatus, forwardTimer, pauseTimer, startTimer, timerStore } from '$lib/stores/timer';
 	import Button from '../ui/button/button.svelte';

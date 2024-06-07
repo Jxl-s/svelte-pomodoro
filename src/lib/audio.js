@@ -1,18 +1,41 @@
-/** @type {HTMLAudioElement} */
-let alarmAudio;
+const audioData = {
+	alarm: { url: '/sounds/alarm.mp3', volume: 1 },
+	click: { url: '/sounds/click.mp3', volume: 0.5 }
+};
 
-function getAlarmAudio() {
-	if (!alarmAudio) alarmAudio = new Audio('/sounds/alarm.mp3');
-	return alarmAudio;
+/** @type {Record<string, HTMLAudioElement>} */
+const audioElements = {};
+
+/**
+ *
+ * @param {keyof typeof audioData} name
+ * @returns
+ */
+function getAudio(name) {
+	if (!audioElements[name]) {
+		audioElements[name] = new Audio(audioData[name].url);
+		audioElements[name].volume = audioData[name].volume;
+	}
+
+	return audioElements[name];
 }
 
-export function playAlarm() {
-	const audio = getAlarmAudio();
+/**
+ *
+ * @param {keyof typeof audioData} name
+ */
+export function playSound(name) {
+	const audio = getAudio(name);
+	audio.currentTime = 0;
 	audio.play();
 }
 
-export function stopAlarm() {
-	const audio = getAlarmAudio();
+/**
+ *
+ * @param {keyof typeof audioData} name
+ */
+export function stopSound(name) {
+	const audio = getAudio(name);
 	audio.pause();
 	audio.currentTime = 0;
 }

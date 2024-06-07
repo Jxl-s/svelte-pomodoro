@@ -1,4 +1,4 @@
-import { playAlarm, stopAlarm } from '$lib/audio';
+import { playSound, stopSound } from '$lib/audio';
 import { get, writable } from 'svelte/store';
 
 // Defaults
@@ -117,7 +117,7 @@ export function decrementTime() {
 
 		// Playing alarm
 		if (get(settingsStore.soundEnabled)) {
-			playAlarm();
+			playSound('alarm');
 		}
 
 		if (get(settingsStore.notificationEnabled)) {
@@ -146,15 +146,18 @@ export function resetPomodoro() {
 }
 
 export function startTimer() {
-	stopAlarm();
+	stopSound('alarm');
+	playSound('click');
 	timerStore.timerStatus.set(TimerStatus.Running);
 }
 
 export function pauseTimer() {
+	playSound('click');
 	timerStore.timerStatus.set(TimerStatus.Paused);
 }
 
 export function forwardTimer() {
+	playSound('click');
 	timerStore.timeLeft.set(0);
 	decrementTime();
 }
