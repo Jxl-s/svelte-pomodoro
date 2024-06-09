@@ -142,6 +142,7 @@ export function decrementTime() {
 }
 
 export function resetPomodoro() {
+	playSound('click');
 	timerStore.pomodoroNumber.set(1);
 }
 

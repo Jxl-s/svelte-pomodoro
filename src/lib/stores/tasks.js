@@ -1,3 +1,4 @@
+import { playSound } from '$lib/audio';
 import { writable } from 'svelte/store';
 
 export const TaskStatus = {
@@ -18,6 +19,7 @@ export const tasksStore = createTasksStore();
  * @param {string} content
  */
 export const createTask = (content) => {
+	playSound('click');
 	tasksStore.tasks.update((tasks) => {
 		tasks.push({ content, status: TaskStatus.Active });
 		return tasks;

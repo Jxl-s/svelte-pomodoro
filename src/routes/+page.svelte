@@ -8,7 +8,7 @@
 <main>
 	<div class="grid lg:grid-cols-2 gap-3">
 		<Timer class="w-full" />
-		<Settings class="w-full" />
+		<!-- <Settings class="w-full" /> -->
 		<TaskList class="w-full" />
 		<!-- <SessionShare class="w-full" /> -->
 	</div>
