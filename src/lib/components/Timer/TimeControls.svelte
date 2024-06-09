@@ -3,7 +3,7 @@
 	import { TimerStatus, forwardTimer, pauseTimer, startTimer, timerStore } from '$lib/stores/timer';
 	import Button from '../ui/button/button.svelte';
 	import ResetSessionModal from './ResetSessionModal.svelte';
-	import SettingsModal from './SettingsModal.svelte';
+	import SettingsModal from '../Settings/SettingsModal.svelte';
 
 	const timerStatus = timerStore.timerStatus;
 </script>
