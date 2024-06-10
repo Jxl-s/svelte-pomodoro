@@ -5,6 +5,7 @@
 	import * as DropdownMenu from '../ui/dropdown-menu';
 	import FaForward from '$lib/icons/FaForward.svelte';
 	import { TaskStatus, deleteTask, updateTaskStatus } from '$lib/stores/tasks';
+	import { fade } from 'svelte/transition';
 
 	/** @type {number} */
 	export let index;
@@ -26,6 +27,7 @@
 </script>
 
 <li
+	in:fade
 	class="rounded-md border px-4 py-1 my-1 flex items-center justify-between text-sm {completed &&
 		'bg-green-400/25'}"
 >

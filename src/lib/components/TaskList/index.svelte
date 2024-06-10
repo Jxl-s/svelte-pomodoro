@@ -37,7 +37,7 @@
 			</Button>
 		</div>
 		<ul class="mt-4">
-			{#each $tasks as task, i}
+			{#each $tasks as task, i (i)}
 				<TaskListItem
 					index={i}
 					content={task.content}
