@@ -150,6 +150,19 @@ export function startTimer() {
 	stopSound('alarm');
 	playSound('click');
 	timerStore.timerStatus.set(TimerStatus.Running);
+
+	if (get(timerStore.type) === SessionTypes.Focus) {
+		// Make full screen
+		if (!document.fullscreenElement) {
+			document.documentElement.requestFullscreen().catch((err) => {
+				alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+			});
+		} else {
+			if (document.exitFullscreen) {
+				document.exitFullscreen();
+			}
+		}
+	}
 }
 
 export function pauseTimer() {
