@@ -2,6 +2,7 @@
 	import { browser } from '$app/environment';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import FaGear from '$lib/icons/FaGear.svelte';
+	import { saveSettings } from '$lib/storage';
 	import { settingsStore } from '$lib/stores/timer';
 	import Input from '../ui/input/input.svelte';
 	import Switch from '../ui/switch/switch.svelte';
@@ -19,16 +20,19 @@
 	let focusTimeMin = Math.floor($focusTime / 60);
 	$: {
 		focusTime.set(focusTimeMin * 60);
+		saveSettings();
 	}
 
 	let shortBreakTimeMin = Math.floor($shortBreakTime / 60);
 	$: {
 		shortBreakTime.set(shortBreakTimeMin * 60);
+		saveSettings();
 	}
 
 	let longBreakTimeMin = Math.floor($longBreakTime / 60);
 	$: {
 		longBreakTime.set(longBreakTimeMin * 60);
+		saveSettings();
 	}
 
 	$: {
