@@ -1,6 +1,7 @@
 import { get } from 'svelte/store';
 import { settingsStore } from './stores/timer';
 import { browser } from '$app/environment';
+import { tasksStore } from './stores/tasks';
 
 /**
  * Saves settings to local storage
@@ -54,5 +55,34 @@ export function loadSettings() {
 		settingsStore.notificationEnabled.set(notificationEnabled);
 	} catch (e) {
 		localStorage.removeItem('pomodoroSettings');
+	}
+}
+
+/**
+ * Saves tasks to local storage
+ * @returns {void}
+ */
+export function saveTasks() {
+	if (!browser) return;
+
+	const tasksArray = get(tasksStore.tasks);
+	localStorage.setItem('pomodoroTasks', JSON.stringify(tasksArray));
+}
+
+/**
+ * Loads tasks from local storage
+ * @returns {void}
+ */
+export function loadTasks() {
+	if (!browser) return;
+
+	const tasksData = localStorage.getItem('pomodoroTasks');
+	if (!tasksData) return;
+
+	try {
+		const tasksArray = JSON.parse(tasksData);
+		tasksStore.tasks.set(tasksArray);
+	} catch (e) {
+		localStorage.removeItem('pomodoroTasks');
 	}
 }

@@ -1,4 +1,5 @@
 import { playSound } from '$lib/audio';
+import { saveTasks } from '$lib/storage';
 import { writable } from 'svelte/store';
 
 export const TaskStatus = {
@@ -24,6 +25,8 @@ export const createTask = (content) => {
 		tasks.push({ content, status: TaskStatus.Active });
 		return tasks;
 	});
+
+	saveTasks();
 };
 
 /**
@@ -32,6 +35,7 @@ export const createTask = (content) => {
  */
 export const deleteTask = (index) => {
 	tasksStore.tasks.update((tasks) => tasks.filter((_, i) => i !== index));
+	saveTasks();
 };
 
 /**
@@ -45,4 +49,6 @@ export const updateTaskStatus = (index, content, status) => {
 		tasks[index] = { content, status };
 		return tasks;
 	});
+
+	saveTasks();
 };

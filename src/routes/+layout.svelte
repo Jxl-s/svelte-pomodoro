@@ -2,11 +2,12 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import NavBar from '$lib/components/NavBar.svelte';
-	import { loadSettings } from '$lib/storage';
+	import { loadSettings, loadTasks } from '$lib/storage';
 
 	import '../app.css';
 	if (browser) {
 		loadSettings();
+		loadTasks();
 	}
 </script>
 
