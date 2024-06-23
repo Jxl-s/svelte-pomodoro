@@ -8,6 +8,7 @@ Made for me to practice Svelte and SvelteKit
 
 - Features related to authentication and user data (the current sign in button doesn't do anything meaningful)
 - Shared timer sessions
+- More database logic and saved sessions
 
 # Demo
 

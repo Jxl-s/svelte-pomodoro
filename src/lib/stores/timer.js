@@ -152,7 +152,6 @@ export function startTimer() {
 	timerStore.timerStatus.set(TimerStatus.Running);
 
 	if (get(timerStore.type) === SessionTypes.Focus) {
-		// Make full screen
 		if (!document.fullscreenElement) {
 			document.documentElement.requestFullscreen().catch((err) => {
 				alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
