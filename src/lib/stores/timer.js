@@ -144,6 +144,7 @@ export function decrementTime() {
 export function resetPomodoro() {
 	playSound('click');
 	timerStore.pomodoroNumber.set(1);
+	timerStore.type.set(SessionTypes.Focus);
 }
 
 export function startTimer() {
