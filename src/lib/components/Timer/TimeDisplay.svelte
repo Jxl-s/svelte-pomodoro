@@ -1,31 +1,32 @@
 <script>
 	import { decrementTime, formatTime, timerStore } from '$lib/stores/timer';
 	import { onMount } from 'svelte';
+	import { get } from 'svelte/store';
 
 	const timeLeft = timerStore.timeLeft;
 
 	onMount(() => {
 		/** @type {number} */
-		let intervalId;
-		let start = performance.now();
+		let start;
+		/** @type {number} */
+		let nextAt;
 
-		const length = 1000; // length of time between intervals in milliseconds
+		let stop = false;
+		const step = () => {
+			if (stop) return;
 
-		/**
-		 * Step function for requestAnimationFrame
-		 * @param timestamp {number}
-		 */
-		function step(timestamp) {
-			if (timestamp - start >= length) {
-				decrementTime();
-				start = timestamp;
+			if (!start) {
+				start = new Date().getTime();
+				nextAt = start;
 			}
+			nextAt += 1000;
 
-			intervalId = requestAnimationFrame(step);
-		}
+			decrementTime();
+			setTimeout(step, nextAt - new Date().getTime());
+		};
 
-		intervalId = requestAnimationFrame(step);
-		return () => cancelAnimationFrame(intervalId);
+		step();
+		return () => (stop = true);
 	});
 
 	/**
